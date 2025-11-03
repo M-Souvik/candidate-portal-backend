@@ -1,41 +1,41 @@
-# ==========================
+# ==============================
 # Stage 1: Build the application
-# ==========================
+# ==============================
 FROM eclipse-temurin:21-jdk AS builder
 
-# Set working directory inside container
+# Set the working directory
 WORKDIR /app
 
-# Copy Gradle wrapper and build configuration files
+# Copy Gradle files first for caching
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle settings.gradle ./
 
-# Give execute permissions to gradlew
+# Make gradlew executable
 RUN chmod +x gradlew
 
-# Download Gradle dependencies (for caching)
+# Download dependencies
 RUN ./gradlew dependencies --no-daemon || true
 
-# Copy the application source code
+# Copy application source
 COPY src src
 
-# Build the Spring Boot JAR file
+# Build the application
 RUN ./gradlew bootJar --no-daemon
 
-# ==========================
+# ==============================
 # Stage 2: Run the application
-# ==========================
+# ==============================
 FROM eclipse-temurin:21-jre
 
-# Set working directory
+# Working directory
 WORKDIR /app
 
-# Copy the built JAR file from the builder stage
+# Copy jar from builder stage
 COPY --from=builder /app/build/libs/*.jar app.jar
 
-# Expose the default Spring Boot port
+# Expose port 8080
 EXPOSE 8080
 
-# Run the Spring Boot JAR
+# Run the app
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
