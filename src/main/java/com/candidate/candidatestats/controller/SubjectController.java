@@ -7,7 +7,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/subjects")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://candidate-portal-frontend.vercel.app"
+    }, allowCredentials = "true")
 public class SubjectController {
 
     private final SubjectService service;

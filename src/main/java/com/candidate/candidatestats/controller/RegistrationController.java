@@ -8,7 +8,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/registrations")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://candidate-portal-frontend.vercel.app"
+    }, allowCredentials = "true")
 public class RegistrationController {
 
     private final RegistrationService service;
