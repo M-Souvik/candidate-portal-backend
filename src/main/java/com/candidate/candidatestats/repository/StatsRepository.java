@@ -11,17 +11,6 @@ import com.candidate.candidatestats.model.Registrations; // Use any existing ent
 public interface StatsRepository extends CrudRepository<Registrations, Integer> {
 
     @Query(value = """
-    CREATE OR REPLACE VIEW student_score AS
-        SELECT 
-            student_id,
-            ROUND(SUM(exam_score)::numeric, 2) AS total_score,
-            ROUND(AVG(exam_score)::numeric, 2) AS average_score
-        FROM 
-            students
-        GROUP BY 
-            student_id
-        ORDER BY 
-            student_id;
         SELECT 
             (SELECT COUNT(*) FROM subjects) AS subjects,
             (SELECT COUNT(*) FROM registrations) AS registered,
