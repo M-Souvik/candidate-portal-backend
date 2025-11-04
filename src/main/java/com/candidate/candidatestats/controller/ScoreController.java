@@ -14,10 +14,7 @@ import com.candidate.candidatestats.service.ScoreService;
 
 @RestController
 @RequestMapping("/api/scores")
-@CrossOrigin(origins = {
-        "http://localhost:3000",
-        "https://candidate-portal-frontend.vercel.app"
-    },allowCredentials = "true")
+@CrossOrigin(origins = "https://candidate-portal-frontend.vercel.app",allowCredentials = "true")
 
 public class ScoreController {
     

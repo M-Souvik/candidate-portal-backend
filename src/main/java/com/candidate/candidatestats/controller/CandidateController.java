@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/candidates")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")// to allow React frontend
+@CrossOrigin(origins = "https://candidate-portal-frontend.vercel.app", allowCredentials = "true")// to allow React frontend
 public class CandidateController {
     private final CandidateService candidateService;
 

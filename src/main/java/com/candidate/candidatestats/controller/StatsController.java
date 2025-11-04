@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/stats")
-@CrossOrigin(origins = {
-        "http://localhost:3000",
-        "https://candidate-portal-frontend.vercel.app"
-    }, allowCredentials = "true")
+@CrossOrigin(origins = "https://candidate-portal-frontend.vercel.app", allowCredentials = "true")
 public class StatsController {
 
     @Autowired
